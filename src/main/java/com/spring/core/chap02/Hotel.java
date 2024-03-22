@@ -1,12 +1,20 @@
-package com.spring.core.chap01;
+package com.spring.core.chap02;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+// @Component를 지정한 클래스는
+// 스프링 컨테이너(빈을 저장하는 공강)에 객체가 생성되고, 관리되게 됩니다.
+@Component
 public class Hotel {
 
    // 의존관계: 어떤 객체가 정상 동작하기 위해 어떤 객체를 필요로 하는 것.
    private Restaurant restaurant;
    private Chef chef;
 
-   public Hotel(Restaurant restaurant, Chef chef) {
+   @Autowired // 스프링에 빈으로 등록된 의존 객체를 알아서 넣어주는 기능.
+   public Hotel(@Qualifier("ar") Restaurant restaurant, @Qualifier("kc") Chef chef) {
       this.restaurant = restaurant;
       this.chef = chef;
    }
